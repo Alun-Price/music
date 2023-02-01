@@ -90,6 +90,13 @@
             </button>
           </form>
           <!-- Registration Form -->
+          <div
+            class="text-white text-center font-bold p-4 rounded mb-4"
+            v-if="reg_show_alert"
+            :class="reg_alert_variant"
+          >
+            {{ reg_alert_msg }}
+          </div>
           <vee-form
             v-show="tab === 'register'"
             :validation-schema="schema"
@@ -187,6 +194,7 @@
             <button
               type="submit"
               class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
+              :disabled="reg_in_submission"
             >
               Submit
             </button>
@@ -210,14 +218,18 @@ export default {
         name: "required|min:3|max:100|alpha_spaces",
         email: "required|min:3|max:100|email",
         age: "required|min_value:18|max_value:130",
-        password: "required|min:9|max:100|excluded:password",
+        password: "required|min:9|max:100|password_excluded:password",
         confirm_password: "confirmed:@password",
         country: "required|is_not:Greenland",
-        tos: "required",
+        tos: "tos",
       },
       userData: {
         country: "USA",
       },
+      reg_in_submission: false,
+      reg_show_alert: false,
+      reg_alert_variant: "bg-blue-500",
+      reg_alert_msg: "Please wait! Your account is being created.",
     };
   },
   computed: {
@@ -228,6 +240,13 @@ export default {
   },
   methods: {
     register(values) {
+      this.reg_show_alert = true;
+      this.reg_in_submission = true;
+      this.reg_alert_variant = "bg-blue-500";
+      this.reg_alert_msg = "Please wait! Your account is being created.";
+
+      this.reg_alert_variant = "bg-green-500";
+      this.reg_alert_msg = "Success!! Your account has been created!!";
       console.log(values);
     },
   },
