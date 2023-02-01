@@ -14,6 +14,7 @@ import {
   max_value as maxVal,
   confirmed,
   is_not,
+  not_one_of as excluded,
 } from "@vee-validate/rules";
 
 export default {
@@ -31,5 +32,6 @@ export default {
     defineRule("max_value", maxVal);
     defineRule("confirmed", confirmed);
     defineRule("is_not", is_not);
+    defineRule("excluded", excluded);
   },
 };
