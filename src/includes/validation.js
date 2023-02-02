@@ -52,7 +52,7 @@ export default {
           alpha_spaces: `${
             ctx.field[0].toUpperCase() + ctx.field.substring(1)
           } may only contain alphabetic characters and spaces.`,
-          email: `The ${
+          email: `${
             ctx.field[0].toUpperCase() + ctx.field.substring(1)
           } field must be a valid email.`,
           min_value: `${
@@ -72,7 +72,7 @@ export default {
 
         const message = messages[ctx.rule.name]
           ? messages[ctx.rule.name]
-          : `The ${ctx.field} field is invalid.`;
+          : `${ctx.field} field is invalid.`;
 
         return message;
       },
