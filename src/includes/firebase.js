@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 // we'll be using firebase to authenticate the userSelect
+import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDglc4uU7Xmqn36-87H0Hs2lGtXUt1YJSk",
@@ -10,5 +11,12 @@ const firebaseConfig = {
   appId: "1:884345502334:web:c955f52a4d63a1d883762f",
 };
 
-export default firebase.initializeApp(firebaseConfig);
-// allows us to import firebase and use it in components
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+const usersCollection = db.collection("users");
+
+export { auth, db, usersCollection };
